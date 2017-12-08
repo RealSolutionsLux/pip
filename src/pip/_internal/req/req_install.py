@@ -350,7 +350,11 @@ class InstallRequirement(object):
 
             return self._temp_build_dir.path
         if self.editable:
-            name = self.name.lower()
+            # allow controlling the name of the src clone via the link url
+            if self.link.src_name_fragment:
+                name = self.link.scr_name_fragment
+            else:
+                name = self.name.lower()
         else:
             name = self.name
         # FIXME: Is there a better place to create the build_dir? (hg and bzr
