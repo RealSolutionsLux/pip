@@ -170,7 +170,7 @@ class Git(VersionControl):
         else:
             self.run_command(['fetch', '-q'], cwd=dest)
         # Then reset to wanted revision (maybe even origin/master)
-        rev_options = self.check_rev_options(dest, rev_options)
+        rev_options_detached = self.check_rev_options(dest, rev_options)
         cmd_args = ['reset', '--hard', '-q'] + rev_options.to_args()
         self.run_command(cmd_args, cwd=dest)
         #: update submodules
@@ -187,7 +187,7 @@ class Git(VersionControl):
             self.run_command(['clone', '-q', url, dest])
 
             if rev:
-                rev_options = self.check_rev_options(dest, rev_options)
+                rev_options_detached = self.check_rev_options(dest, rev_options)
                 # Only do a checkout if the current commit id doesn't match
                 # the requested revision.
                 if not self.is_commit_id_equal(dest, rev_options.rev):
