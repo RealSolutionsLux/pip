@@ -1014,7 +1014,7 @@ class Link(object):
             return None
         return match.group(1)
 
-    _src_name_fragment_re = re.compile(r'[#&]build_name=([^#&]*)')
+    _src_name_fragment_re = re.compile(r'[#&]src_name=([^#&]*)')
 
     @property
     def src_name_fragment(self):
