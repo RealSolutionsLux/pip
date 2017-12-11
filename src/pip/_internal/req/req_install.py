@@ -352,7 +352,7 @@ class InstallRequirement(object):
         if self.editable:
             # allow controlling the name of the src clone via the link url
             if self.link.src_name_fragment:
-                name = self.link.scr_name_fragment
+                name = self.link.src_name_fragment
             else:
                 name = self.name.lower()
         else:
