@@ -525,6 +525,8 @@ class InstallRequirement(object):
         if self._egg_info_path is None:
             if self.editable:
                 base = self.source_dir
+                if self.link and self.link.subdirectory_fragment:
+                    base = os.path.join(base, self.link.subdirectory_fragment)
             else:
                 base = os.path.join(self.setup_py_dir, 'pip-egg-info')
             filenames = os.listdir(base)
